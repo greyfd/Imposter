@@ -8,5 +8,48 @@
 import Foundation
 
 class Game {
+    
+     enum category {
+         case Sports
+         case Geography
+         case VideoGames
+    }
+    
+    var numberOfPlayers: Int
+    var players: [Player] = []
+    var imposter: Player
+    var category: category
+    var questionSet: [Question] = [
+        Question(question: "What is the things favorite food?", answers: ["Pizza", "Chicken", "Tacos", "Pasta"])
+    ]
+    var questionIndex = 0
+    
+    
+    init(numberOfPlayers: Int, category: category) {
+        
+        self.numberOfPlayers = numberOfPlayers
+        self.category = category
+        for i in 0..<numberOfPlayers {
+            players.append(Player(name: "Player \(i + 1)", isImposter: false))
+        }
+        
+        let random = Int.random(in: 0..<numberOfPlayers)
+        
+        var impasta = players[random]
+        impasta.isImposter = true
+        imposter = impasta
+            
+    }
+    
+    func answerQuestion(player: Player, answer: String) -> Void {
+        player.answers.append(answer)
+    }
+    
+    func nextQuestion() -> Question {
+        return questionSet[questionIndex + 1]
+    }
+    
+    
+    
      
 }
