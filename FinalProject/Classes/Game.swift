@@ -19,7 +19,7 @@ class Game {
     var players: [Player] = []
     var imposter: Player
     var category: category
-  //  var questionSet: [Question] = [
+    var questionSet: [Question] = [
         Question(question: "What is the things favorite food?", answers: ["Pizza", "Chicken", "Tacos", "Pasta"])
     ]
     var questionIndex = 0

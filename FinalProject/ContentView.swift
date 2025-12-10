@@ -44,7 +44,7 @@ struct ContentView: View {
                     
                 }
                 
-                NavigationLink("", destination: PlayerCountView(), isActive: $nextView)
+                NavigationLink("", destination: PlayerCountView(count: 0), isActive: $nextView)
                     .navigationBarBackButtonHidden(true)
                 
                 
