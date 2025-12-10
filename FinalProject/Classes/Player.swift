@@ -17,4 +17,6 @@ class Player {
         self.isImposter = isImposter
     }
     
+    
+    
 }

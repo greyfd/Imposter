@@ -19,7 +19,7 @@ class Game {
     var players: [Player] = []
     var imposter: Player
     var category: category
-  //  var questionSet: [Question] = [
+    var questionSet: [Question] = [
         Question(question: "What is the things favorite food?", answers: ["Pizza", "Chicken", "Tacos", "Pasta"])
     ]
     var questionIndex = 0
@@ -35,10 +35,14 @@ class Game {
         
         let random = Int.random(in: 0..<numberOfPlayers)
         
-        var impasta = players[random]
+        let impasta = players[random]
         impasta.isImposter = true
         imposter = impasta
             
+    }
+    
+    func getPlayer(index: Int) -> Player {
+        return players[index];
     }
     
     func answerQuestion(player: Player, answer: String) -> Void {
