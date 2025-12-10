@@ -9,12 +9,16 @@ import SwiftUI
 
 struct AnswerButton: View {
     @State var answer: String
+    var action: () -> Void
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(.green)
             .frame(maxWidth: .infinity, maxHeight: 120)
             .overlay {
-                Text(answer)
+                Button(answer) {
+                    action()
+                }
+                .foregroundStyle(.black)
                     .font(.title2)
                     .fontWeight(.semibold)
             }
@@ -23,5 +27,7 @@ struct AnswerButton: View {
 }
 
 #Preview {
-    AnswerButton(answer: "Pizza")
+    AnswerButton(answer: "Pizza") {
+        
+    }
 }

@@ -35,10 +35,14 @@ class Game {
         
         let random = Int.random(in: 0..<numberOfPlayers)
         
-        var impasta = players[random]
+        let impasta = players[random]
         impasta.isImposter = true
         imposter = impasta
             
+    }
+    
+    func getPlayer(index: Int) -> Player {
+        return players[index];
     }
     
     func answerQuestion(player: Player, answer: String) -> Void {
