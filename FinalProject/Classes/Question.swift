@@ -26,4 +26,9 @@ class Question: ObservableObject {
         self.answers = answers
     }
     
+    func setSelf(question: Question) {
+        setQuestion(question: question.question)
+        setAnswers(answers: question.answers)
+    }
+    
 }
