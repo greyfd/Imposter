@@ -44,6 +44,24 @@ struct ContentView: View {
                     
                 }
                 
+                
+                Button {
+                    
+                    
+                    
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .resizable()
+                        .frame(width: 45, height: 45)
+                        .foregroundStyle(.black)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .foregroundStyle(.blue)
+                                .frame(width: 200, height: 50)
+                        )
+                }
+
+                
                 NavigationLink("", destination: PlayerCountView(), isActive: $nextView)
                     .navigationBarBackButtonHidden(true)
                 

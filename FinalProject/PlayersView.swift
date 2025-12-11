@@ -17,6 +17,8 @@ struct PlayersView: View {
     
     @State var name = ""
     
+    @State var firstTime = 0
+    
     var body: some View {
         VStack{
             Text("Enter Names")
@@ -40,8 +42,11 @@ struct PlayersView: View {
             }
             .frame(width: 350, height: 500)
             .onAppear{
-                for _ in 0..<count{
-                    players.append(Player(name: "", isImposter: false))
+                if firstTime == 0{
+                    for _ in 0..<count{
+                        players.append(Player(name: "", isImposter: false))
+                    }
+                    firstTime += 1
                 }
             }
             

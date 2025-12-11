@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct RevealView: View {
     
     @State var players: [Player]
     
@@ -17,8 +17,14 @@ struct GameView: View {
     
     var body: some View {
         
-        
-        
+        VStack{
+            
+            
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.black)
+        .opacity(0.8)
         
         
     }
