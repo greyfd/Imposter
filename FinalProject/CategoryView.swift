@@ -9,9 +9,18 @@ import SwiftUI
 
 struct CategoryView: View {
     
-    @State var cats = ["Sports, Geography, Video Games, Places, School, Holidays, Celebrities, Nature"]
+    @State var cats = ["Sports", "Geography", "Video Games", "Places", "School", "Holidays", "Celebrities", "Nature"]
     
     @State var nextView = false
+    
+    @State var selectedCat: String?
+    
+    @State var currentCats: [String] = []
+    
+    @State var count: Int
+    
+    @State var players: [Player]
+    
     
     var body: some View {
         
@@ -29,81 +38,40 @@ struct CategoryView: View {
                     
                 )
             
+            let columns = [GridItem(.flexible()), GridItem(.flexible())]
             
-            HStack{
-                Button{
-                    
-                } label: {
-                    Text("Sports")
-                        .foregroundStyle(.black)
-                        .font(.largeTitle)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 6)
-                            //.frame(width: 55, height: 30)
-                                .foregroundStyle(.gray)
-                            
-                        )
+            LazyVGrid(columns: columns, spacing: 15){
+                ForEach(currentCats, id: \.self) { cat in
+                    Button {
+                        selectedCat = cat
+//                        print(selectedCat ?? "not working")
+//                        print(count)
+//                        for player in players {
+//                           print(player.name)
+//                         }
+                        //Game(numberOfPlayers: , category: <#T##Game.category#>)
+                        
+                        nextView = true
+                    } label: {
+                        Text("\(cat)")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 6)
+                                
+                            )
+                    }
                 }
-                
-                
-                Button {
-                    
-                } label: {
-                    Text("Geography")
-                        .foregroundStyle(.black)
-                        .font(.largeTitle)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 6)
-                            //.frame(width: 150, height: 45)
-                                .foregroundStyle(.gray)
-                            
-                        )
-                }
-                
-                
-                
-            }
-            HStack{
-                Button {
-                    
-                } label: {
-                    Text("Video Games")
-                        .foregroundStyle(.black)
-                        .font(.largeTitle)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 6)
-                            //.frame(width: 150, height: 45)
-                                .foregroundStyle(.gray)
-                            
-                        )
-                }
-                
-                Button{
-                    
-                } label: {
-                    Text("Places")
-                        .foregroundStyle(.black)
-                        .font(.largeTitle)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 6)
-                            //.frame(width: 150, height: 45)
-                                .foregroundStyle(.gray)
-                            
-                        )
-                }
-                
-                
-                
-                // .padding()
             }
             
+
             
             
             Button {
+                
+                generateNew()
                 
             } label: {
                 Text("Generate New")
@@ -117,25 +85,25 @@ struct CategoryView: View {
             }
             
             
-            Button {
-                
-                nextView = true
-                
-                //save cat
-                
-            } label: {
-                Text("Submit")
-                    .foregroundStyle(.white)
-                    .font(.largeTitle)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 6)
-                            .foregroundStyle(.blue)
-                    )
-            }
+//            Button {
+//                
+//                nextView = true
+//                
+//                //save cat
+//                
+//            } label: {
+//                Text("Submit")
+//                    .foregroundStyle(.white)
+//                    .font(.largeTitle)
+//                    .padding()
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 6)
+//                            .foregroundStyle(.blue)
+//                    )
+//            }
             
             
-            //NavigationLink("", destination: <#T##View#>, isActive: <#T##Binding<Bool>#>)
+            NavigationLink("", destination: GameView(players: players, count: count, cat: selectedCat ?? "not working"), isActive: $nextView)
             
             
         }
@@ -143,10 +111,20 @@ struct CategoryView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)
         .opacity(0.8)
+        .onAppear{
+            generateNew()
+        }
         
     }
+    
+    
+    func generateNew() {
+            currentCats = Array(cats.shuffled().prefix(4))
+            selectedCat = nil
+        }
+    
 }
 
 #Preview {
-    CategoryView()
+    //CategoryView()
 }

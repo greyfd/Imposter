@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PlayerCountView: View {
     
-    @State var count: Int?
+    @State var count = 3
+    
     @State var nextView = false
     
     var body: some View {
@@ -30,14 +31,22 @@ struct PlayerCountView: View {
                 // Stepper("", value: $count)
                 Spacer()
                 
+                Text("Min 3 Players")
+                    .foregroundStyle(.gray)
+                    .font(.caption)
+                    .background(
+                        RoundedRectangle(cornerRadius: 2)
+                            .frame(width: 85, height: 17)
+                    )
+                
                 VStack{
                     Stepper {
-                        Text("Players: \(count!)")
+                        Text("Players: \(count)")
                             .font(.title)
                     } onIncrement: {
-                        count! += 1
+                        count += 1
                     } onDecrement: {
-                        count! -= 1
+                        if count > 3 {count -= 1}
                     }
                     .foregroundStyle(.white)
                 }
@@ -74,7 +83,7 @@ struct PlayerCountView: View {
                 
                 
                 
-                NavigationLink("", destination: PlayersView(), isActive: $nextView)
+                NavigationLink("", destination: PlayersView(count: count), isActive: $nextView)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -94,5 +103,5 @@ struct PlayerCountView: View {
 }
 
 #Preview {
-    PlayerCountView(count: 0)
+    PlayerCountView()
 }
