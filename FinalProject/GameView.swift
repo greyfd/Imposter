@@ -1,13 +1,8 @@
 import SwiftUI
-
-<<<<<<< HEAD:FinalProject/RevealView.swift
-struct RevealView: View {
-=======
 struct GameView: View {
  
     @StateObject var game: Game
-    @StateObject var question: Question = Question(question: "Loading...", answers: [])
->>>>>>> main:FinalProject/GameView.swift
+    @StateObject var question: Question
     
     @State var peopleAnswered: Int = 0
     
@@ -15,6 +10,8 @@ struct GameView: View {
         let newGame = Game(numberOfPlayers: count, category: .Sports)
         newGame.setPlayers(players: players)
         newGame.initGame()
+        newGame.nextQuestion()
+        _question = StateObject(wrappedValue: newGame.currentQuestion ?? Question(question: "Error", answers: []))
         _game = StateObject(wrappedValue: newGame)
     }
 
@@ -57,18 +54,7 @@ struct GameView: View {
         return false
     }
     
-<<<<<<< HEAD:FinalProject/RevealView.swift
-    var body: some View {
-        
-        VStack{
-            
-            
-            
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
-        .opacity(0.8)
-=======
+
     func answerQuestion(selectedAnswer: String) {
         guard peopleAnswered < game.players.count else { return }
 
@@ -77,7 +63,6 @@ struct GameView: View {
         player.answers.append(selectedAnswer)
         
         print("\(player.name) answered: \(selectedAnswer)")
->>>>>>> main:FinalProject/GameView.swift
         
         peopleAnswered += 1
         
