@@ -24,7 +24,7 @@ struct ContentView: View {
                     nextView = true
                     
                    
-                    print("commit")
+                    
                     
                 } label: {
                     VStack{

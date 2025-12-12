@@ -103,7 +103,7 @@ struct CategoryView: View {
 //            }
             
             
-            NavigationLink("", destination: GameView(players: players, count: count, cat: selectedCat ?? "not working"), isActive: $nextView)
+            NavigationLink("", destination: RevealView(players: players, count: count, cat: selectedCat ?? "not working"), isActive: $nextView)
             
             
         }

@@ -10,14 +10,69 @@ import SwiftUI
 struct CardView: View {
     
     @State var playerName: String
-       @State var isImposter: Bool
-       @State var word: String
+    @State var isImposter: Bool
+    @State var word: String
+    
+    @State var flip = false
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button{
+            
+            flip.toggle()
+            
+            
+            
+        } label: {
+            //Text("\(playerName)")
+            
+            if !flip{
+                Text("\(playerName)")
+                    .foregroundStyle(.white)
+                    .font(.title)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundStyle(.blue)
+                    )
+                
+                
+            }
+            
+            else{
+                
+                if isImposter{
+                    Text("Imposter")
+                        .foregroundStyle(.red)
+                        .font(.title)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(.gray)
+                                .opacity(0.6)
+                        )
+                    
+                }
+                else{
+                    Text("\(word)")
+                        .foregroundStyle(.green)
+                        .font(.title)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(.gray)
+                                .opacity(0.6)
+                        )
+                    
+                }
+            }
+            
+        }
+        
+        
     }
 }
 
 #Preview {
-    //CardView()
+    CardView(playerName: "parker", isImposter: false, word: "school")
 }

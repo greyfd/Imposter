@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Player {
+class Player: Identifiable {
     var name: String
     var answers: [String] = []
     var isImposter: Bool
