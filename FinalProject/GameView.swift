@@ -5,6 +5,7 @@ struct GameView: View {
     @StateObject var question: Question
     
     @State var peopleAnswered: Int = 0
+    @State var showAnswers = false
     
     init(players: [Player], count: Int, cat: String) {
         let newGame = Game(numberOfPlayers: count, category: .Sports)
@@ -16,33 +17,57 @@ struct GameView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("\(game.players[peopleAnswered].name)'s Turn")
+        ZStack {
             
-            Spacer()
-            
-          
-            
-            Spacer()
-            
-            if let activeQuestion = game.currentQuestion {
-                Text(activeQuestion.question)
-                VStack {
-                    ForEach(activeQuestion.answers, id: \.self) { answerText in
-                        AnswerButton(answer: answerText) {
-                            answerQuestion(selectedAnswer: answerText)
+            VStack {
+                Text("\(game.players[peopleAnswered].name)'s Turn")
+                
+                Spacer()
+                
+                
+                
+                Spacer()
+                
+                if let activeQuestion = game.currentQuestion {
+                    Text(activeQuestion.question)
+                    VStack {
+                        ForEach(activeQuestion.answers, id: \.self) { answerText in
+                            AnswerButton(answer: answerText) {
+                                answerQuestion(selectedAnswer: answerText)
+                            }
                         }
                     }
                 }
+                
+                
+                Spacer()
             }
             
-            
-            Spacer()
+            VStack {
+                ForEach(game.players) { player in
+                    Spacer()
+                    HStack {
+                        Text(player.name)
+                        Text("-")
+                        Text(player.answers.last ?? "No Answers")
+                    }
+                    Spacer()
+                    
+                }
+                Spacer()
+                Button("Next Question", systemImage: "paperplane.fill") {
+                    showAnswers.toggle()
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.white)
+            .opacity(showAnswers ? 100 : 0)
+                        
         }
         .background(getCurrentPlayerImposterStatus() ? .red : .white)
         .onAppear() {
-          let firstQ = game.nextQuestion()
-        question.setSelf(question: firstQ)
+
             
         }
     }
@@ -67,11 +92,15 @@ struct GameView: View {
         peopleAnswered += 1
         
         if peopleAnswered >= game.players.count {
+            
+            
+            
             let newQuestion = game.nextQuestion()
             
             question.setSelf(question: newQuestion)
-            
+            print(newQuestion.question)
             peopleAnswered = 0
+            showAnswers = true
         }
     }
     

@@ -7,14 +7,16 @@
 
 import Foundation
 
-class Player {
+class Player: Identifiable, ObservableObject {
     var name: String
-    var answers: [String] = []
-    var isImposter: Bool
+   @Published var answers: [String] = []
+   @Published var isImposter: Bool
+    var id: UUID
     
     init(name: String, isImposter: Bool) {
         self.name = name
         self.isImposter = isImposter
+        id = UUID()
     }
     
     

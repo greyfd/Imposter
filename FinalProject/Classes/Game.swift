@@ -16,8 +16,8 @@ class Game: ObservableObject {
     }
     @Published var currentQuestion: Question?
     var numberOfPlayers: Int
-    var players: [Player] = []
-    var imposter: Player
+   @Published var players: [Player] = []
+    var imposter: Player?
     var category: category
     var questionSet: [Question] = [
         Question(question: "What is the things favorite food?", answers: ["Pizza", "Chicken", "Tacos", "Pasta"]),
@@ -38,13 +38,6 @@ class Game: ObservableObject {
         for i in 0..<numberOfPlayers {
             players.append(Player(name: "Player \(i + 1)", isImposter: false))
         }
-        
-        let random = Int.random(in: 0..<numberOfPlayers)
-        
-        let impasta = players[random]
-        impasta.isImposter = true
-        imposter = impasta
-            
     }
     
     func getPlayer(index: Int) -> Player {
@@ -56,8 +49,12 @@ class Game: ObservableObject {
     }
     
     func nextQuestion() -> Question {
-        currentQuestion = questionSet[questionIndex + 1]
-        return questionSet[questionIndex + 1]
+        let currentIndex = questionIndex
+        currentQuestion = questionSet[currentIndex + 1]
+        
+        questionIndex += 1
+        
+        return questionSet[currentIndex + 1]
     }
     
     func setSelf(game: Game) {
