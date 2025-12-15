@@ -82,6 +82,7 @@ struct RevealView: View {
             
             
             NavigationLink("", destination: GameView(players: players, count: count, cat: cat), isActive: $nextView)
+               // .navigationBarBackButtonHidden(true)
             
             
         }    //vstack

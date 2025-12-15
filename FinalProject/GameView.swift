@@ -70,6 +70,7 @@ struct GameView: View {
 
             
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func getCurrentPlayerImposterStatus() -> Bool {
