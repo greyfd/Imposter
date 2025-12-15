@@ -12,8 +12,11 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 //    @Query private var items: [Item]
     
+    @Binding var themeColor: Color
+    
     
     @State var nextView = false
+    @State var setView = false
     
     var body: some View {
         NavigationStack{
@@ -47,13 +50,17 @@ struct ContentView: View {
                 
                 Button {
                     
+                    setView = true
+                    
+                   
+                    
                     
                     
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
                         .frame(width: 45, height: 45)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .background(
                             RoundedRectangle(cornerRadius: 6)
                                 .foregroundStyle(.blue)
@@ -65,16 +72,18 @@ struct ContentView: View {
                 NavigationLink("", destination: PlayerCountView(), isActive: $nextView)
                     .navigationBarBackButtonHidden(true)
                 
+                NavigationLink("", destination: SettingView(themeColor: $themeColor), isActive: $setView)
+                
                 
             }   //vstack
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
+            .background(themeColor)
             .opacity(0.8)
         }
     }     //view
 }
 
 #Preview {
-    ContentView()
+    ContentView(themeColor: .constant(.black))
 //        .modelContainer(for: Item.self, inMemory: true)
 }

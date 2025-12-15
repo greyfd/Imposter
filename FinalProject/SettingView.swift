@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     
-    @State var themeColor = "dark"
+    @Binding var themeColor: Color
     
     @State var lightDark = false
     
@@ -67,11 +67,23 @@ struct SettingView: View {
             }
             .padding()
             
+            Button {
+                
+                themeColor = lightDark ? .gray : .black
+                
+            } label: {
+                Text("Done")
+            }
+
+            
             
         }     //vstack
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(themeColor)
+        .opacity(0.8)
     }
 }
 
 #Preview {
-    SettingView()
+    SettingView(themeColor: .constant(.black))
 }

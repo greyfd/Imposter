@@ -25,7 +25,7 @@ struct FinalProjectApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(themeColor: .constant(.black))
         }
         .modelContainer(sharedModelContainer)
     }

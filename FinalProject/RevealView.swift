@@ -98,5 +98,5 @@ struct RevealView: View {
 }
 
 #Preview {
-    RevealView(players: [Player(name: "Greyson", isImposter: false), Player(name: "Parker", isImposter: false), Player(name: "Caden", isImposter: false), Player(name: "Elijah", isImposter: true)], count: 3, cat: "sports")
+    RevealView(players: [Player(name: "Greyson", isImposter: false), Player(name: "Parker", isImposter: false), Player(name: "Caden", isImposter: false), Player(name: "Elijah", isImposter: false)], count: 3, cat: "sports")
 }
