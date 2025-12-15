@@ -49,7 +49,11 @@ struct GameView: View {
                     HStack {
                         Text(player.name)
                         Text("-")
-                        Text(player.answers.last ?? "No Answers")
+                        if(!player.answers.isEmpty) {
+                            
+                            Text(player.answers.last!)
+                                .environmentObject(player)
+                        }
                     }
                     Spacer()
                     
@@ -83,6 +87,8 @@ struct GameView: View {
 
     func answerQuestion(selectedAnswer: String) {
         guard peopleAnswered < game.players.count else { return }
+        
+        game.objectWillChange.send()
 
         let player = game.getPlayer(index: peopleAnswered)
         

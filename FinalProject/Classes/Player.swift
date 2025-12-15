@@ -8,10 +8,10 @@
 import Foundation
 
 class Player: Identifiable, ObservableObject {
-    var name: String
+   @Published var name: String
    @Published var answers: [String] = []
    @Published var isImposter: Bool
-    var id: UUID
+   @Published var id: UUID
     
     init(name: String, isImposter: Bool) {
         self.name = name
