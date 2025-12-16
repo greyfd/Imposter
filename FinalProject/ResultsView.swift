@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ResultsView: View {
+    var game: Game
     var body: some View {
         VStack {
             
@@ -17,5 +18,5 @@ struct ResultsView: View {
 }
 
 #Preview {
-    ResultsView()
+    ResultsView(game: )
 }

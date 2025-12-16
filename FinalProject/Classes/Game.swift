@@ -22,6 +22,33 @@ class Game: ObservableObject {
    @Published var players: [Player] = []
     var imposter: Player?
     var category: category
+    let words = [
+        "Eagle",
+        "Pizza",
+        "Helicopter",
+        "Guitar",
+        "Rose",
+        "Laptop",
+        "Sneakers",
+        "Hammer",
+        "Shark",
+        "Sofa",
+        "Ice Cream",
+        "Bicycle",
+        "Sword",
+        "Basketball",
+        "Sun",
+        "Diamond",
+        "Toilet Paper",
+        "Microscope",
+        "Spider",
+        "Castle",
+        "Gold",
+        "T-Shirt",
+        "Apple",
+        "Clock",
+        "Ocean"
+    ]
     var questionSet: [Question] = [
         Question(question: "Where would you usually find this?", answers: ["Indoors", "Outdoors", "In a pocket", "Underground"]),
             Question(question: "How much does it usually cost?", answers: ["Cheap/Free", "Reasonable", "Expensive", "Priceless"]),
