@@ -61,8 +61,8 @@ struct QuestionView: View {
         
         if (peopleAnswered == game.players.count - 1) {
             let newQuestion = game.nextQuestion()
-            question.setAnswers(answers: newQuestion.answers)
-            question.setQuestion(question: newQuestion.question)
+//            question.setAnswers(answers: newQuestion.answers)
+//            question.setQuestion(question: newQuestion.question)
 
             peopleAnswered = 0
         }
