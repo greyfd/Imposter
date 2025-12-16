@@ -5,6 +5,9 @@ struct RevealView: View {
     @StateObject var game: Game
 
     @State var playersReady = 0
+    
+    //@State var themeColor: Color
+    
     @State var nextView = false
     
     init(players: [Player], count: Int, cat: String) {

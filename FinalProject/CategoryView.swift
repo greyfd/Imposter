@@ -21,6 +21,8 @@ struct CategoryView: View {
     
     @State var players: [Player]
     
+    //@State var themeColor: Color
+    
     
     var body: some View {
         

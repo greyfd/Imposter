@@ -19,6 +19,8 @@ struct PlayersView: View {
     
     @State var firstTime = 0
     
+    //@State var themeColor: Color
+    
     var body: some View {
         VStack{
             Text("Enter Names")
