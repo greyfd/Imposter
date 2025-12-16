@@ -12,8 +12,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 //    @Query private var items: [Item]
     
-    @Binding var themeColor: Color
-    
+    //@State var themeColor: Color
     
     @State var nextView = false
     @State var setView = false
@@ -48,42 +47,42 @@ struct ContentView: View {
                 }
                 
                 
-                Button {
-                    
-                    setView = true
-                    
-                   
-                    
-                    
-                    
-                } label: {
-                    Image(systemName: "gearshape.fill")
-                        .resizable()
-                        .frame(width: 45, height: 45)
-                        .foregroundStyle(.white)
-                        .background(
-                            RoundedRectangle(cornerRadius: 6)
-                                .foregroundStyle(.blue)
-                                .frame(width: 200, height: 50)
-                        )
-                }
+//                Button {
+//                    
+//                    setView = true
+//                    
+//                   
+//                    
+//                    
+//                    
+//                } label: {
+//                    Image(systemName: "gearshape.fill")
+//                        .resizable()
+//                        .frame(width: 45, height: 45)
+//                        .foregroundStyle(.white)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 6)
+//                                .foregroundStyle(.blue)
+//                                .frame(width: 200, height: 50)
+//                        )
+//                }
 
                 
                 NavigationLink("", destination: PlayerCountView(), isActive: $nextView)
                     .navigationBarBackButtonHidden(true)
                 
-                NavigationLink("", destination: SettingView(themeColor: $themeColor), isActive: $setView)
+                //NavigationLink("", destination: SettingView(themeColor: $themeColor), isActive: $setView)
                 
                 
             }   //vstack
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(themeColor)
+            .background(.black)
             .opacity(0.8)
         }
     }     //view
 }
 
 #Preview {
-    ContentView(themeColor: .constant(.black))
+    ContentView()
 //        .modelContainer(for: Item.self, inMemory: true)
 }

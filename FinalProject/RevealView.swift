@@ -17,7 +17,7 @@ struct RevealView: View {
     
     @State var playersReady = 0
     
-    
+    //@State var themeColor: Color
     
     @State var nextView = false
     

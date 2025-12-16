@@ -38,6 +38,7 @@ struct SettingView: View {
                 Toggle("", isOn: $lightDark)
                     .labelsHidden()
                 Text("Light")
+                
             }
             
             HStack{
@@ -70,6 +71,8 @@ struct SettingView: View {
             Button {
                 
                 themeColor = lightDark ? .gray : .black
+                
+                print(lightDark)
                 
             } label: {
                 Text("Done")

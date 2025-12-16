@@ -13,6 +13,8 @@ struct PlayerCountView: View {
     
     @State var nextView = false
     
+    //@State var themeColor: Color
+    
     var body: some View {
         
         NavigationStack{
