@@ -7,6 +7,8 @@ struct GameView: View {
     @State var peopleAnswered: Int = 0
     @State var showAnswers = false
     @State var endGame = false
+    @State var maxQuestions = 5
+    @State var questionsAnswered = 0
 
 
     var body: some View {
@@ -61,7 +63,7 @@ struct GameView: View {
                     Text("Game Over")
                     Spacer()
                     NavigationLink {
-                        ResultsView()
+                        ResultsView(game: game)
                     } label: {
                         AnswerButton(answer: "Go to Results") {
                             
@@ -97,10 +99,16 @@ struct GameView: View {
         game.objectWillChange.send()
 
         let player = game.getPlayer(index: peopleAnswered)
-        player.answers.append(selectedAnswer)
+        player.answers.append(Question(question: game.currentQuestion!.question, answers: [selectedAnswer]))
         print("\(player.name) answered: \(selectedAnswer)")
         
         if peopleAnswered + 1 >= game.players.count {
+            questionsAnswered += 1
+            
+            if(questionsAnswered == maxQuestions) {
+                endGame = true
+                return
+            }
 //round over
             peopleAnswered = 0
             

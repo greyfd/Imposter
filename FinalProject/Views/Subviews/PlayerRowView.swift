@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct PlayerRowView: View {
-    // This is the key: This view observes the specific Player object
     @ObservedObject var player: Player
     
     var body: some View {
         HStack {
             Text(player.name)
             Text("-")
-            if let lastAnswer = player.answers.last {
+            if let lastAnswer = player.answers.last?.answers.first {
                 Text(lastAnswer)
-                    // Animation is optional but looks nice
                     .transition(.opacity)
             }
         }

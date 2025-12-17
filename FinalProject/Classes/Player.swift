@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Player: Identifiable, ObservableObject {
+class Player: Identifiable, ObservableObject, Hashable, Equatable {
    @Published var name: String
-   @Published var answers: [String] = []
+   @Published var answers: [Question] = []
    @Published var isImposter: Bool
    @Published var id: UUID
     
@@ -18,6 +18,16 @@ class Player: Identifiable, ObservableObject {
         self.isImposter = isImposter
         id = UUID()
     }
+    
+    static func ==(lhs: Player, rhs: Player) -> Bool {
+        return lhs.id == rhs.id 
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    
     
     
     

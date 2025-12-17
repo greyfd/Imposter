@@ -22,7 +22,7 @@ class Game: ObservableObject {
    @Published var players: [Player] = []
     var imposter: Player?
     var category: category
-    let words = [
+    var words = [
         "Eagle",
         "Pizza",
         "Helicopter",
@@ -94,7 +94,7 @@ class Game: ObservableObject {
         return players[index];
     }
     
-    func answerQuestion(player: Player, answer: String) -> Void {
+    func answerQuestion(player: Player, answer: Question) -> Void {
         player.answers.append(answer)
     }
     
@@ -122,6 +122,13 @@ class Game: ObservableObject {
     }
     
     func initGame() {
+        
+        words.shuffle()
+        
+        for player in players {
+            player.isImposter = false
+        }
+        
         let random = Int.random(in: 0..<numberOfPlayers)
         
         let impasta = players[random]

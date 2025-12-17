@@ -38,7 +38,7 @@ struct RevealView: View {
                 LazyVGrid(columns: columns, spacing: 50) {
                    
                     ForEach(game.players) { p in
-                        CardView(playerName: p.name, isImposter: p.isImposter, word: "Pizza") //add getting from game class
+                        CardView(playerName: p.name, isImposter: p.isImposter, word: game.words[0]) //add getting from game class
                     }
                 }
                 .padding()
