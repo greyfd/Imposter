@@ -7,6 +7,11 @@
 
 import Foundation
 
+
+struct arrayWrapper {
+    var array: [Int]
+}
+
 class Game: ObservableObject {
     
      enum category {

@@ -7,7 +7,7 @@ struct GameView: View {
     @State var peopleAnswered: Int = 0
     @State var showAnswers = false
     @State var endGame = false
-    @State var maxQuestions = 5
+    @State var maxQuestions = 3
     @State var questionsAnswered = 0
 
 
@@ -19,6 +19,7 @@ struct GameView: View {
                 
                 VStack {
                     Text("\(game.players[peopleAnswered].name)'s Turn")
+                        .foregroundStyle(Color.white)
                     
                     Spacer()
                     
@@ -55,7 +56,7 @@ struct GameView: View {
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.white)
+                .background(.black)
                 .opacity(showAnswers ? 100 : 0)
                 
                 VStack {
@@ -72,11 +73,11 @@ struct GameView: View {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.white)
+                .background(.black)
                 .opacity(endGame ? 100 : 0)
                 
             }
-            .background(getCurrentPlayerImposterStatus() ? .red : .white)
+            .background(getCurrentPlayerImposterStatus() ? .black : .black)
             .onAppear() {
                 
                 
