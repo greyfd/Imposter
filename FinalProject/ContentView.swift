@@ -38,8 +38,8 @@ struct ContentView: View {
                                     .frame(width: 200, height: 50)
                                     .foregroundStyle(.blue)
                             )
-                            .frame(maxHeight: .infinity, alignment: .top)
-                            .padding(.top, 100)
+//                            .frame(maxHeight: .infinity, alignment: .top)
+//                            .padding(.top, 100)
                         
                     }
                     .padding()

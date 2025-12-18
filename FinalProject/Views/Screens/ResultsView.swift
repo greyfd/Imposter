@@ -13,23 +13,25 @@ struct ResultsView: View {
     @State var votes: [Player] = []
     @State var gameOver = false
     @State var votedFor: [Player]?
-    
+
     var body: some View {
         ZStack {
 
             if !gameOver {
-                
+
                 if playerIndex < game.players.count {
                     VStack {
-                        Text("\(game.players[playerIndex].name) click who you think the Imposter is.")
-                            .padding(.top)
-                        
+                        Text(
+                            "\(game.players[playerIndex].name) click who you think the Imposter is."
+                        )
+                        .padding(.top)
+
                         ScrollView {
                             VStack(spacing: 20) {
                                 ForEach(game.players, id: \.self) { player in
-                                    
+
                                     VStack {
-                                        
+
                                         Text("\(player.name)'s Answers")
                                             .fontWeight(.bold)
                                             .frame(maxWidth: .infinity)
@@ -38,9 +40,9 @@ struct ResultsView: View {
                                             .onTapGesture {
                                                 handleVote(player: player)
                                             }
-                                        
-                                        
-                                        ForEach(player.answers, id: \.self) { answer in
+
+                                        ForEach(player.answers, id: \.self) {
+                                            answer in
                                             Text("Question: \(answer.question)")
                                                 .font(.caption)
                                                 .foregroundStyle(.secondary)
@@ -55,42 +57,51 @@ struct ResultsView: View {
                     }
                 }
             }
-            
 
             if gameOver {
                 VStack {
-                    
+
                     Text("Player's Voted For:")
                         .font(.title)
                         .padding()
-                    
+
                     if let votedFor = votedFor {
-                        
-                        if (votedFor.count > 1 ) {
+
+                        if votedFor.count > 1 {
                             Text("Tie")
                                 .font(.headline)
                                 .foregroundStyle(.yellow)
-                            
+
                             ForEach(votedFor, id: \.self) { player in
                                 HStack {
                                     Text("\(player.name)")
                                     Text("-")
-                                    Text(player.isImposter ? "Imposter" : "Citizen")
-                                        .foregroundStyle(player.isImposter ? .red : .primary)
+                                    Text(
+                                        player.isImposter
+                                            ? "Imposter" : "Citizen"
+                                    )
+                                    .foregroundStyle(
+                                        player.isImposter ? .red : .primary
+                                    )
                                 }
                             }
                         } else if !votedFor.isEmpty {
                             HStack {
                                 Text("\(votedFor[0].name)")
                                 Text("-")
-                                Text(votedFor[0].isImposter ? "Imposter" : "Citizen")
-                                    .foregroundStyle(votedFor[0].isImposter ? .red : .primary)
+                                Text(
+                                    votedFor[0].isImposter
+                                        ? "Imposter" : "Citizen"
+                                )
+                                .foregroundStyle(
+                                    votedFor[0].isImposter ? .red : .primary
+                                )
                             }
                         }
                     } else {
                         Text("Empty")
                     }
-                    
+
                     NavigationLink {
                         ContentView()
                     } label: {
@@ -101,7 +112,7 @@ struct ResultsView: View {
                             .padding(.top, 20)
                             .foregroundStyle(.white)
                     }
-            
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.black)
@@ -109,33 +120,33 @@ struct ResultsView: View {
                     votedFor = handleVotingOver()
                 }
             }
-            
+
         }
         .background(.black)
         .navigationBarBackButtonHidden(true)
 
     }
-    
+
     func handleVote(player: Player) {
         votes.append(player)
         playerIndex += 1
-        
+
         if playerIndex >= game.players.count {
             gameOver = true
         }
     }
-    
+
     func handleVotingOver() -> [Player] {
         var mostVotedFor: [Player] = []
         var maxVotes = 0
-        
+
         var voteCounts: [Int] = []
-        
+
         for player in game.players {
-            var count = 0;
+            var count = 0
             // Loop through the VOTES array
             for vote in self.votes {
-                if(vote == player) {
+                if vote == player {
                     count += 1
                 }
             }
@@ -144,14 +155,14 @@ struct ResultsView: View {
             }
             voteCounts.append(count)
         }
-        
+
         // Fixed Loop (No more infinite While loop)
         for (index, count) in voteCounts.enumerated() {
             if count == maxVotes {
                 mostVotedFor.append(game.players[index])
             }
         }
-        
+
         return mostVotedFor
     }
 }
