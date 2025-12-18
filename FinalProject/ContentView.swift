@@ -21,6 +21,11 @@ struct ContentView: View {
         NavigationStack{
             VStack{
                 
+                
+                Text("Imposter")
+                    .font(.system(size: 80, weight: .black, design: .default))
+                    .foregroundStyle(.red)
+                
                 Button {
                     
                     nextView = true
